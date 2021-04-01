@@ -16,5 +16,6 @@ mod 'puppetlabs-kubernetes', '6.0.0'
 mod 'puppetlabs-docker', '4.0.0'
 mod 'icinga-icinga2', '3.0.0'
 mod 'puppetlabs-mysql', '11.0.0'
+mod 'puppet-nginx', '3.0.0'
 #not from forge
 #profile code and local modules
