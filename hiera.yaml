@@ -18,5 +18,7 @@ hierarchy:
     path: "collection/${::collection_id}.yaml"
   - name: "common host types/applications same as a role"
     path: "roles/%{::role}.yaml"
+  - name: "puppet_type to differentiate between puppet servers and enveryone else"
+    path: "puppet_type/${::puppet_type}.yaml"
   - name: "All Hosts"
     path: "common.yaml"
