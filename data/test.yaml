@@ -1,0 +1,5 @@
+---
+classes:
+  - selinux
+  - utilities::client
+selinux::mode: 'disabled'
