@@ -1,0 +1,6 @@
+---
+classes:
+  - selinux
+
+
+selinux::mode: 'disabled'
