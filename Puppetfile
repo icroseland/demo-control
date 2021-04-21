@@ -17,7 +17,6 @@ mod 'puppetlabs-docker', '4.0.0'
 mod 'icinga-icinga2', '3.0.0'
 mod 'puppetlabs-mysql', '11.0.0'
 mod 'puppet-nginx', '3.0.0'
-mod 'puppet-selinux', '3.2.0'
 mod 'utilities',
   :git    => 'https://github.com/icroseland/utilities',
   :branch => 'main',
