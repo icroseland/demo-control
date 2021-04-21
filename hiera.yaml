@@ -21,7 +21,7 @@ hierarchy:
   - name: "puppet_type to differentiate between puppet servers and enveryone else"
     path: "puppet_type/${::puppet_type}.yaml"
   - name: "test merge"
-  - path: "test.yaml"
+    path: "test.yaml"
   - name: "All Hosts"
     path: "common.yaml"
 
