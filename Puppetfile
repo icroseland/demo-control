@@ -18,5 +18,9 @@ mod 'icinga-icinga2', '3.0.0'
 mod 'puppetlabs-mysql', '11.0.0'
 mod 'puppet-nginx', '3.0.0'
 mod 'utilities',
- git:    'https://github.com/icroseland/utilities',
- branch: 'main'
+    :git => 'https://github.com/icroseland/utilities',
+    :branch => 'main'
+mod 'manage_users',
+    :git => 'git@github.com:icroseland/manage_users.git',
+    :branch => :control_branch,
+    :default_branch => 'master'
