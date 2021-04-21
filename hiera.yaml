@@ -22,3 +22,4 @@ hierarchy:
     path: "puppet_type/${::puppet_type}.yaml"
   - name: "All Hosts"
     path: "common.yaml"
+
