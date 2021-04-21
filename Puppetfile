@@ -18,6 +18,5 @@ mod 'icinga-icinga2', '3.0.0'
 mod 'puppetlabs-mysql', '11.0.0'
 mod 'puppet-nginx', '3.0.0'
 mod 'utilities',
-  :git    => 'https://github.com/icroseland/utilities',
-  :branch => 'main',
-  :default_branch => 'main'
+ git:    'https://github.com/icroseland/utilities',
+ branch: 'main'
