@@ -20,4 +20,5 @@ mod 'puppet-nginx', '3.0.0'
 mod 'puppet-selinux', '3.2.0'
 mod 'utilities',
   :git    => 'https://github.com/icroseland/utilities',
-  :branch => 'main'
+  :branch => 'main',
+  :default_branch => 'main'
