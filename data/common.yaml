@@ -1,5 +1,6 @@
 ---
 classes:
   - selinux
-
+  - utilities::show_info
+  
 selinux::mode: 'disabled'
