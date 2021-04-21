@@ -20,3 +20,5 @@ mod 'puppet-nginx', '3.0.0'
 mod 'puppet-selinux', '3.2.0'
 #not from forge
 #profile code and local modules
+mod 'utilities',
+    :git => 'git@github.com:icroseland/utilities.git'
