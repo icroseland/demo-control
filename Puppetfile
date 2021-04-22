@@ -22,3 +22,8 @@ mod 'utilities',
     :git => 'https://github.com/icroseland/utilities',
     :branch => 'production',
     :default_branch => 'main'
+
+mod 'manage_users',
+    :git => 'https://github.com/icroseland/manage_users.git',
+    :branch => 'master',
+    :default_branch => 'master'
