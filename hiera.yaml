@@ -11,7 +11,7 @@ hierarchy:
       - "nodes/%{::fqdn}.yaml"
       - "application/%{::application}.yaml"
       - "collection/%{::collection}.yaml"
-      - "profiles/%{::profile}.yaml"
+      - "profile/%{::profile}.yaml"
       - "puppet_type/%{::puppet_type}.yaml"
       - "common.yaml"
     options:
