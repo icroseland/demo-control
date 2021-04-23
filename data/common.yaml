@@ -9,7 +9,7 @@ selinux::mode: 'disabled'
 utilities::show_info::eyaml_proof: 'ENC[PKCS7,MIIBmQYJKoZIhvcNAQcDoIIBijCCAYYCAQAxggEhMIIBHQIBADAFMAACAQEwDQYJKoZIhvcNAQEBBQAEggEAJxXXetAEY8MKtW+36PP7YCnHWrJk+b6gw1PIlSugJ6qMdJVXLq4gs/mcSHNjSmeVf4uYclYzD58NGQp9F+SRLSWrrqp8gETj++DmcWTsK5LvJsqzlK0dUHKyiOEJv7vE3ByABlefACKqqzP4PJQgWrj4K+KK55s2CkJHK2MbvvD8SU8yCmGAxUDv3cRU2dw+fDZ974d179QZ9w4tH2zS93pO/WznsnTkQbE38x4PJkDsbZZGqKQJy0fGDGS07n4O9e/kxsEMazc2+eEDtBE8Kbpi/XVsewjarmWt9HRpQhmWRzklmIMPBFOR7TW7R+7RnFo/cFnGFEhE9i438nlYnTBcBgkqhkiG9w0BBwEwHQYJYIZIAWUDBAEqBBAnpaYwZVaP1XHrSdkgKj2jgDC3h9BsjFf8RFXYUMtlJ10w+iqC83jFWRlG0P0IWfxu36x34rD2mgJdVGQaMXcR6fg=]'
 
 
-manage_users:user_hash:
+manage_users::user_hash:
   testuser1:
     ensure: 'present'
     uid:
