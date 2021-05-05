@@ -18,6 +18,7 @@ mod 'icinga-icinga2', '3.0.0'
 mod 'puppetlabs-mysql', '11.0.0'
 mod 'puppet-nginx', '3.0.0'
 mod 'puppet-python', '6.0.0'
+mod 'puppet-epel', '3.0.1'
 
 mod 'utilities',
     :git => 'https://github.com/icroseland/utilities',
