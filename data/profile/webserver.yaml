@@ -1,4 +1,10 @@
 ---
+classes:
+  - python
+
+python::ensure: 'system'
+python::pip:    'true'
+
 manage_users::user_hash:
   testuser1:
     ensure: 'present'
