@@ -2,7 +2,7 @@
 classes:
   - python
 
-python::ensure: 'system'
+python::ensure: 'latest'
 python::pip:    'true'
 
 manage_users::user_hash:
