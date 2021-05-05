@@ -30,5 +30,5 @@ mod 'manage_users',
 
 mod 'manage_scripts',
     :git => 'https://github.com/icroseland/manage_scripts.git',
-    :branch => 'master',
-    :default_branch => 'master'
+    :branch => 'main',
+    :default_branch => 'main'
