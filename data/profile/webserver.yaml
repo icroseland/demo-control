@@ -3,7 +3,7 @@ classes:
   - python
 
 python::ensure: 'latest'
-python::pip:    'true'
+python::pip:    'latest'
 
 manage_users::user_hash:
   testuser1:
