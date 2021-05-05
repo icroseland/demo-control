@@ -27,3 +27,8 @@ mod 'manage_users',
     :git => 'https://github.com/icroseland/manage_users.git',
     :branch => 'master',
     :default_branch => 'master'
+
+mod 'manage_scripts',
+    :git => 'https://github.com/icroseland/manage_scripts.git',
+    :branch => 'master',
+    :default_branch => 'master'

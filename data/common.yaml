@@ -3,6 +3,7 @@ classes:
   - selinux
   - utilities::show_info
   - manage_users
+  - manage_scripts
   
 selinux::mode: 'disabled'
 
@@ -111,3 +112,5 @@ manage_users::user_hash:
       SF80imJoq593hT7RyVWCHPCQD6N6LkzxnCyQFCnihPOIBK19kVYGLnVCOoOv
       rVorrM9xEXcmsfkrLFIuScQYQeKZ/as=]
 
+manage_scripts::file_array:
+  - '/usr/local/bin/uniq_ip.py'
