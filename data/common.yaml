@@ -1,12 +1,9 @@
 ---
 classes:
-  - selinux
   - utilities::show_info
   - manage_users
   - manage_scripts
   
-selinux::mode: 'disabled'
-
 manage_scripts::file_array:
   - '/usr/local/bin/uniq_ip.py'
 

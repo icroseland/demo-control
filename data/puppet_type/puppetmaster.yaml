@@ -1,4 +1,6 @@
 ---
+classes:
+  - start_master
 manage_users::user_hash:
   testuser2:
     ensure: 'present'
