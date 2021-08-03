@@ -1,7 +1,6 @@
 ---
 classes:
   - utilities::show_info
-  - manage_users
   - manage_scripts
   
 manage_scripts::file_array:

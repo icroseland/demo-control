@@ -1,0 +1,173 @@
+---
+classes:
+  - python
+  - nginx
+  - utilities::fileshare
+  - pam
+
+utilities::fileshare::access_log: '/var/log/nginx/%{::fqdn}_access.log'
+utilities::fileshare::error_log: '/var/log/nginx/%{::fqdn}_error.log error'
+utilities::fileshare::www_root: '/data/ftp/$remote_user'
+utilities::fileshare::ssl: true
+utilities::fileshare::ssl_cert: '/etc/ssl/certs/nginx.crt'
+utilities::fileshare::ssl_key: '/etc/ssl/private/nginx.key'
+utilities::fileshare::site_name: 'puppet-test1-intrusion-com.intrusion.com'
+utilities::fileshare::listen_port: 443
+
+utilities::fileshare::locations_hash:
+  'admin':
+    location: '/admin'
+    server: 'puppet-test1-intrusion-com.intrusion.com'
+    www_root: '/data/ftp/$remote_user'
+    alias: '/data/ftp'
+    autoindex: 'on'
+
+  'admin_Mirage':
+    location: /adming/Mirage'
+    server: 'puppet-test1-intrusion-com.intrusion.com'
+    www_root: '/data/ftp/$remote_user'
+    alias: '/data/ftp/Mirage'
+    autoindex: 'on'
+
+  'admin_acoventry':
+    location: '/admin/acoventry'
+    server: 'puppet-test1-intrusion-com.intrusion.com'
+    www_root: '/data/ftp/$remote_user'
+    alias: '/data/ftp/acoventry'
+    autoindex: 'on'
+
+pam::services:
+  nginx:
+    lines:
+      - 'session    optional     pam_keyinit.so    force revoke'
+      - 'auth       required     pam_shells.so'
+      - 'auth       include      password-auth'
+      - 'account    include      password-auth'
+      - 'session    required     pam_loginuid.so'
+      - 'session    include      password-auth'
+
+  nginx-acoventry:
+    lines:
+      - 'session    optional     pam_keyinit.so    force revoke'
+      - 'auth       required     pam_listfile.so item=group sense=allow onerr=fail file=/etc/nginx/pam_users/acoventry.allowed'
+      - 'auth       required     pam_shells.so'
+      - 'auth       include      password-auth'
+      - 'account    include      password-auth'
+      - 'session    required     pam_loginuid.so'
+      - 'session    include      password-auth'
+
+
+  nginx-fileadmins:
+    lines:
+      - 'session    optional     pam_keyinit.so    force revoke'
+      - 'auth       required     pam_listfile.so item=group sense=allow onerr=fail file=/etc/nginx/pam_users/fileadmins.allowed'
+      - 'auth       required     pam_shells.so'
+      - 'auth       include      password-auth'
+      - 'account    include      password-auth'
+      - 'session    required     pam_loginuid.so'
+      - 'session    include      password-auth'
+utilities::fileshare::pam_users:
+  - 'acoventry'
+  - 'dpelphrey'
+  - 'mirage'
+  - 'Wombat'
+  - 'fileadmins'
+  - 'J.Ryan'
+  - 'mtran'
+  - 'wwilliams'
+
+
+
+
+python::ensure: 'latest'
+python::pip:    'latest'
+
+
+vsftpd::anonymous_enable: false
+vsftpd::local_enable: true
+vsftpd::listen: true
+
+vsftpd::pasv_min_port: 10000
+vsftpd::pasv_max_port: 20000
+vsftpd::local_umask: '022'
+vsftpd::dirmessage_enable: true
+vsftpd::xferlog_enable: true
+vsftpd::log_ftp_protocol: true
+vsftpd::connect_from_port_20: true
+vsftpd::nopriv_user: 'vsftpd'
+vsftpd::chroot_local_user: true
+vsftpd::local_root: '/data/ftp/\$USER'
+vsftpd::user_sub_token: '\$USER'
+vsftpd::user_config_dir: '/etc/vsftpd/vsftpd_user_conf'
+
+vsftpd::ssl_enable: true
+vsftpd::allow_anon_ssl: false
+vsftpd::force_local_data_ssl: true
+vsftpd::force_local_logins_ssl: true
+vsftpd::ssl_tlsv1_1: true
+vsftpd::ssl_tlsv1_2: true
+vsftpd::ssl_tlsv1: false
+vsftpd::ssl_sslv2: false
+vsftpd::ssl_sslv3: false
+vsftpd::require_ssl_reuse: true
+vsftpd::ssl_ciphers: 'HIGH'
+vsftpd::rsa_cert_file: '/etc/ssl/certs/vsftpd.crt'
+vsftpd::rsa_private_key_file: '/etc/ssl/private/vsftpd.key'
+
+utilities::fileshare::my_cert: "%{hiera('vsftpd::rsa_cert_file')}"
+
+manage_users::group_hash:
+  fileadmins:
+    gid: '500'
+  fileusers:
+    gid: '501'
+  vsftpd:
+    gid: '503'
+  root:
+    gid: '0'
+  wheel:
+    gid: '10'
+
+utilities::fileshare::vsftpd_user_conf:
+  - 'acoventry'
+  - 'alan.phan'
+  - 'awallace'
+  - 'bbittle'
+  - 'bdumas'
+  - 'ben'
+  - 'bgoerz'
+  - 'BigBilly'
+  - 'bschade'
+  - 'bschurter'
+  - 'buford'
+  - 'cbrant'
+  - 'Chris.Calvery'
+  - 'croberts'
+  - 'dan.jones'
+  - 'daustin'
+  - 'David.Steely'
+  - 'dcorbett'
+  - 'dengel'
+  - 'dnevil'
+  - 'dpelphrey'
+  - 'eamaral'
+  - 'ebrouwer'
+  - 'esnow'
+  - 'Evan.Hamlin'
+  - 'ghemphill'
+  - 'Head'
+  - 'hmcmahon'
+  - 'ian.rekward'
+  - 'IntzTaskUser'
+  - 'JackB'
+  - 'jbrown'
+  - 'Jeff.Koenig'
+  - 'jkramer'
+  - 'jledger'
+  - 'John.Lee'
+  - 'john.wright'
+  - 'Jorge.Tejada'
+  - 'jpickett'
+  - 'jscott'
+  - 'kjensen'
+  - 'lmiras'
