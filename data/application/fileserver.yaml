@@ -4,7 +4,7 @@ classes:
   - nginx
   - utilities::fileshare
   - pam
-
+nginx::manage_repo: false
 utilities::fileshare::access_log: '/var/log/nginx/%{::fqdn}_access.log'
 utilities::fileshare::error_log: '/var/log/nginx/%{::fqdn}_error.log error'
 utilities::fileshare::www_root: '/data/ftp/$remote_user'
@@ -13,7 +13,6 @@ utilities::fileshare::ssl_cert: '/etc/ssl/certs/ssl-cert-snakeoil.pem'
 utilities::fileshare::ssl_key: '/etc/ssl/private/ssl-cert-snakeoil.key'
 utilities::fileshare::site_name: '%{::fqdn}'
 utilities::fileshare::listen_port: 443
-
 utilities::fileshare::locations_hash:
   'admin':
     location: '/admin'
