@@ -1,0 +1,201 @@
+::::::::::::::
+---
+classes:
+  - python
+  - nginx
+  - prof::fileshare
+  - pam
+
+prof::fileshare::access_log: '/var/log/nginx/%{::fqdn}_access.log'
+prof::fileshare::error_log: '/var/log/nginx/%{::fqdn}_error.log error'
+prof::fileshare::www_root: '/data/ftp/$remote_user'
+prof::fileshare::ssl: true
+prof::fileshare::ssl_cert: '/etc/ssl/certs/nginx.crt'
+prof::fileshare::ssl_key: '/etc/ssl/private/nginx.key'
+prof::fileshare::site_name: '%{::fqdn}'
+prof::fileshare::listen_port: 443
+
+prof::fileshare::locations_hash:
+  'admin':
+    location: '/admin'
+    server: '%{::fqdn}'
+    www_root: '/data/ftp/$remote_user'
+    alias: '/data/ftp'
+    autoindex: 'on'
+
+  'admin_testa':
+    location: '/admin/testa'
+    server: '%{::fqdn}'
+    www_root: '/data/ftp/$remote_user'
+    alias: '/data/ftp/acoventry'
+    autoindex: 'on'
+
+  'admin_testb':
+    location: '/admin/testb'
+    server: '%{::fqdn}'
+    www_root: '/data/ftp/$remote_user'
+    alias: '/data/ftp/dpelphrey'
+    autoindex: 'on'
+
+  'admin_mtran':
+    location: '/admin/mtran'
+    server: '%{::fqdn}'
+    www_root: '/data/ftp/$remote_user'
+    alias: '/data/ftp/mtran'
+    autoindex: 'on'
+
+pam::services:
+  nginx:
+    lines:
+      - 'session    optional     pam_keyinit.so    force revoke'
+      - 'auth       required     pam_shells.so'
+      - 'auth       include      password-auth'
+      - 'account    include      password-auth'
+      - 'session    required     pam_loginuid.so'
+      - 'session    include      password-auth'
+
+  nginx-testa:
+    lines:
+      - 'session    optional     pam_keyinit.so    force revoke'
+      - 'auth       required     pam_listfile.so item=group sense=allow onerr=fail file=/etc/nginx/pam_users/testa.allowed'
+      - 'auth       required     pam_shells.so'
+      - 'auth       include      password-auth'
+      - 'account    include      password-auth'
+      - 'session    required     pam_loginuid.so'
+      - 'session    include      password-auth'
+
+
+  nginx-fileadmins:
+    lines:
+      - 'session    optional     pam_keyinit.so    force revoke'
+      - 'auth       required     pam_listfile.so item=group sense=allow onerr=fail file=/etc/nginx/pam_users/fileadmins.allowed'
+      - 'auth       required     pam_shells.so'
+      - 'auth       include      password-auth'
+      - 'account    include      password-auth'
+      - 'session    required     pam_loginuid.so'
+      - 'session    include      password-auth'
+
+  nginx-testb:
+    lines:
+      - 'session    optional     pam_keyinit.so    force revoke'
+      - 'auth       required     pam_listfile.so item=group sense=allow onerr=fail file=/etc/nginx/pam_users/testb.allowed'
+      - 'auth       required     pam_shells.so'
+      - 'auth       include      password-auth'
+      - 'account    include      password-auth'
+      - 'session    required     pam_loginuid.so'
+      - 'session    include      password-auth'
+
+prof::fileshare::pam_users:
+  - 'testa'
+  - 'testb'
+  - 'testc'
+  - 'fileadmins'
+
+
+
+python::ensure: 'latest'
+python::pip:    'latest'
+
+vsftpd::anonymous_enable: false
+vsftpd::local_enable: true
+vsftpd::listen: true
+
+vsftpd::pasv_min_port: 10000
+vsftpd::pasv_max_port: 20000
+vsftpd::local_umask: '022'
+vsftpd::dirmessage_enable: true
+vsftpd::xferlog_enable: true
+vsftpd::log_ftp_protocol: true
+vsftpd::connect_from_port_20: true
+vsftpd::nopriv_user: 'vsftpd'
+vsftpd::chroot_local_user: true
+vsftpd::local_root: '/data/ftp/\$USER'
+vsftpd::user_sub_token: '\$USER'
+vsftpd::user_config_dir: '/etc/vsftpd/vsftpd_user_conf'
+
+vsftpd::ssl_enable: true
+vsftpd::allow_anon_ssl: false
+vsftpd::force_local_data_ssl: true
+vsftpd::force_local_logins_ssl: true
+vsftpd::ssl_tlsv1_1: true
+vsftpd::ssl_tlsv1_2: true
+vsftpd::ssl_tlsv1: false
+vsftpd::ssl_sslv2: false
+vsftpd::ssl_sslv3: false
+vsftpd::require_ssl_reuse: true
+vsftpd::ssl_ciphers: 'HIGH'
+vsftpd::rsa_cert_file: '/etc/ssl/certs/vsftpd.crt'
+vsftpd::rsa_private_key_file: '/etc/ssl/private/vsftpd.key'
+
+
+prof::fileshare::my_cert: "%{hiera('vsftpd::rsa_cert_file')}"
+
+manage_users::group_hash:
+  fileadmins:
+    gid: '500'
+  fileusers:
+    gid: '501'
+  vsftpd:
+    gid: '503'
+  root:
+    gid: '0'
+  wheel:
+    gid: '10'
+
+prof::fileshare::vsftpd_user_conf:
+  - 'testa'
+  - 'testb'
+  - 'testc'
+  - 'testd'
+  - 'teste'
+
+manage_users::user_hash:
+  testa:
+    ensure: 'present'
+    password:'$6$ueTSYUFza1x4JX5o$0KNazrGa6K/LH11/a0P.fzzPk./boBhWeVEbYLMT2A9m/MnXen3yKPacV1M4rwK/mqQYpLUr1z2iOF4rivSHw0'
+    uid: '550'
+    gid: '550'
+    home: '/data/ftp/testa'
+    shell: '/sbin/nologin'
+    group_array:
+      - fileadmins
+      - testa
+  testb:
+    ensure: 'present'
+    password:'$6$ueTSYUFza1x4JX5o$0KNazrGa6K/LH11/a0P.fzzPk./boBhWeVEbYLMT2A9m/MnXen3yKPacV1M4rwK/mqQYpLUr1z2iOF4rivSHw0'
+    uid: '551'
+    gid: '551'
+    home: '/data/ftp/testb'
+    shell: '/sbin/nologin'
+    group_array:
+      - testb    
+  testc:
+    ensure: 'present'
+    password:'$6$ueTSYUFza1x4JX5o$0KNazrGa6K/LH11/a0P.fzzPk./boBhWeVEbYLMT2A9m/MnXen3yKPacV1M4rwK/mqQYpLUr1z2iOF4rivSHw0'
+    uid: '552'
+    gid: '552'
+    home: '/data/ftp/testc'
+    shell: '/sbin/nologin'
+    group_array:
+      - fileadmins
+      - testc
+  testd:
+    ensure: 'present'
+    password:'$6$ueTSYUFza1x4JX5o$0KNazrGa6K/LH11/a0P.fzzPk./boBhWeVEbYLMT2A9m/MnXen3yKPacV1M4rwK/mqQYpLUr1z2iOF4rivSHw0'
+    uid: '553'
+    gid: '553'
+    home: '/data/ftp/testd'
+    shell: '/sbin/nologin'
+    group_array:
+      - fileadmins
+      - testd
+  teste:
+    ensure: 'present'
+    password:'$6$ueTSYUFza1x4JX5o$0KNazrGa6K/LH11/a0P.fzzPk./boBhWeVEbYLMT2A9m/MnXen3yKPacV1M4rwK/mqQYpLUr1z2iOF4rivSHw0'
+    uid: '554'
+    gid: '554'
+    home: '/data/ftp/teste'
+    shell: '/sbin/nologin'
+    group_array:
+      - teste
+      

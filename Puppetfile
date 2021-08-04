@@ -20,6 +20,10 @@ mod 'puppet-nginx', '3.0.0'
 mod 'puppet-python', '6.0.0'
 mod 'puppet-epel', '3.0.1'
 mod 'puppetlabs-inifile', '5.0.1'
+mod 'ghoneycutt-pam', '3.7.0'
+mod 'pseiler-vsftpd', '8.0.1'
+mod 'ghoneycutt-nsswitch', '1.8.0'
+
 
 mod 'utilities',
     :git => 'https://github.com/icroseland/utilities',
