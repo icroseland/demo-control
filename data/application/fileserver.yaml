@@ -122,7 +122,7 @@ vsftpd::ssl_sslv2: false
 vsftpd::ssl_sslv3: false
 vsftpd::require_ssl_reuse: true
 vsftpd::ssl_ciphers: 'HIGH'
-vsftpd::rsa_cert_file: '/etc/ssl/private/vsftpd.csr'
+vsftpd::rsa_cert_file: '/etc/ssl/private/vsftpd.crt'
 vsftpd::rsa_private_key_file: '/etc/ssl/private/vsftpd.key'
 
 
