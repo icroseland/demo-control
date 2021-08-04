@@ -2,19 +2,19 @@
 classes:
   - python
   - nginx
-  - prof::fileshare
+  - utilities::fileshare
   - pam
 
-prof::fileshare::access_log: '/var/log/nginx/%{::fqdn}_access.log'
-prof::fileshare::error_log: '/var/log/nginx/%{::fqdn}_error.log error'
-prof::fileshare::www_root: '/data/ftp/$remote_user'
-prof::fileshare::ssl: true
-prof::fileshare::ssl_cert: '/etc/ssl/certs/nginx.crt'
-prof::fileshare::ssl_key: '/etc/ssl/private/nginx.key'
-prof::fileshare::site_name: '%{::fqdn}'
-prof::fileshare::listen_port: 443
+utilities::fileshare::access_log: '/var/log/nginx/%{::fqdn}_access.log'
+utilities::fileshare::error_log: '/var/log/nginx/%{::fqdn}_error.log error'
+utilities::fileshare::www_root: '/data/ftp/$remote_user'
+utilities::fileshare::ssl: true
+utilities::fileshare::ssl_cert: '/etc/ssl/certs/nginx.crt'
+utilities::fileshare::ssl_key: '/etc/ssl/private/nginx.key'
+utilities::fileshare::site_name: '%{::fqdn}'
+utilities::fileshare::listen_port: 443
 
-prof::fileshare::locations_hash:
+utilities::fileshare::locations_hash:
   'admin':
     location: '/admin'
     server: '%{::fqdn}'
@@ -84,7 +84,7 @@ pam::services:
       - 'session    required     pam_loginuid.so'
       - 'session    include      password-auth'
 
-prof::fileshare::pam_users:
+utilities::fileshare::pam_users:
   - 'testa'
   - 'testb'
   - 'testc'
@@ -127,7 +127,7 @@ vsftpd::rsa_cert_file: '/etc/ssl/certs/vsftpd.crt'
 vsftpd::rsa_private_key_file: '/etc/ssl/private/vsftpd.key'
 
 
-prof::fileshare::my_cert: "%{hiera('vsftpd::rsa_cert_file')}"
+utilities::fileshare::my_cert: "%{hiera('vsftpd::rsa_cert_file')}"
 
 manage_users::group_hash:
   fileadmins:
@@ -141,7 +141,7 @@ manage_users::group_hash:
   wheel:
     gid: '10'
 
-prof::fileshare::vsftpd_user_conf:
+utilities::fileshare::vsftpd_user_conf:
   - 'testa'
   - 'testb'
   - 'testc'
