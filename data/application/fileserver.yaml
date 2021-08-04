@@ -122,8 +122,8 @@ vsftpd::ssl_sslv2: false
 vsftpd::ssl_sslv3: false
 vsftpd::require_ssl_reuse: true
 vsftpd::ssl_ciphers: 'HIGH'
-vsftpd::rsa_cert_file: '/etc/ssl/certs/ssl-cert-snakeoil.pem'
-vsftpd::rsa_private_key_file: '/etc/ssl/private/ssl-cert-snakeoil.key'
+vsftpd::rsa_cert_file: '/etc/ssl/private/vsftpd.csr'
+vsftpd::rsa_private_key_file: '/etc/ssl/private/vsftpd.key'
 
 
 utilities::fileshare::my_cert: "%{hiera('vsftpd::rsa_cert_file')}"
