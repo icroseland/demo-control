@@ -107,8 +107,8 @@ vsftpd::log_ftp_protocol: true
 vsftpd::connect_from_port_20: true
 vsftpd::nopriv_user: 'vsftpd'
 vsftpd::chroot_local_user: true
-vsftpd::local_root: '/data/ftp/\$USER'
-vsftpd::user_sub_token: '\$USER'
+vsftpd::local_root: '/data/ftp/$USER'
+vsftpd::user_sub_token: '$USER'
 vsftpd::user_config_dir: '/etc/vsftpd/vsftpd_user_conf'
 
 vsftpd::ssl_enable: true
