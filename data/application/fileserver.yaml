@@ -151,7 +151,7 @@ prof::fileshare::vsftpd_user_conf:
 manage_users::user_hash:
   testa:
     ensure: 'present'
-    password:'$6$ueTSYUFza1x4JX5o$0KNazrGa6K/LH11/a0P.fzzPk./boBhWeVEbYLMT2A9m/MnXen3yKPacV1M4rwK/mqQYpLUr1z2iOF4rivSHw0'
+    password: '$6$ueTSYUFza1x4JX5o$0KNazrGa6K/LH11/a0P.fzzPk./boBhWeVEbYLMT2A9m/MnXen3yKPacV1M4rwK/mqQYpLUr1z2iOF4rivSHw0'
     uid: '550'
     gid: '550'
     home: '/data/ftp/testa'
@@ -161,7 +161,7 @@ manage_users::user_hash:
       - testa
   testb:
     ensure: 'present'
-    password:'$6$ueTSYUFza1x4JX5o$0KNazrGa6K/LH11/a0P.fzzPk./boBhWeVEbYLMT2A9m/MnXen3yKPacV1M4rwK/mqQYpLUr1z2iOF4rivSHw0'
+    password: '$6$ueTSYUFza1x4JX5o$0KNazrGa6K/LH11/a0P.fzzPk./boBhWeVEbYLMT2A9m/MnXen3yKPacV1M4rwK/mqQYpLUr1z2iOF4rivSHw0'
     uid: '551'
     gid: '551'
     home: '/data/ftp/testb'
@@ -170,7 +170,7 @@ manage_users::user_hash:
       - testb    
   testc:
     ensure: 'present'
-    password:'$6$ueTSYUFza1x4JX5o$0KNazrGa6K/LH11/a0P.fzzPk./boBhWeVEbYLMT2A9m/MnXen3yKPacV1M4rwK/mqQYpLUr1z2iOF4rivSHw0'
+    password: '$6$ueTSYUFza1x4JX5o$0KNazrGa6K/LH11/a0P.fzzPk./boBhWeVEbYLMT2A9m/MnXen3yKPacV1M4rwK/mqQYpLUr1z2iOF4rivSHw0'
     uid: '552'
     gid: '552'
     home: '/data/ftp/testc'
@@ -180,7 +180,7 @@ manage_users::user_hash:
       - testc
   testd:
     ensure: 'present'
-    password:'$6$ueTSYUFza1x4JX5o$0KNazrGa6K/LH11/a0P.fzzPk./boBhWeVEbYLMT2A9m/MnXen3yKPacV1M4rwK/mqQYpLUr1z2iOF4rivSHw0'
+    password: '$6$ueTSYUFza1x4JX5o$0KNazrGa6K/LH11/a0P.fzzPk./boBhWeVEbYLMT2A9m/MnXen3yKPacV1M4rwK/mqQYpLUr1z2iOF4rivSHw0'
     uid: '553'
     gid: '553'
     home: '/data/ftp/testd'
@@ -190,7 +190,7 @@ manage_users::user_hash:
       - testd
   teste:
     ensure: 'present'
-    password:'$6$ueTSYUFza1x4JX5o$0KNazrGa6K/LH11/a0P.fzzPk./boBhWeVEbYLMT2A9m/MnXen3yKPacV1M4rwK/mqQYpLUr1z2iOF4rivSHw0'
+    password: '$6$ueTSYUFza1x4JX5o$0KNazrGa6K/LH11/a0P.fzzPk./boBhWeVEbYLMT2A9m/MnXen3yKPacV1M4rwK/mqQYpLUr1z2iOF4rivSHw0'
     uid: '554'
     gid: '554'
     home: '/data/ftp/teste'
