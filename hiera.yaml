@@ -8,7 +8,7 @@ hierarchy:
   - name: "Per-node data (yaml version)"
     lookup_key: eyaml_lookup_key
     paths:
-      - "nodes/%{fqdn}.yaml"
+      - "nodes/%{trusted.certname}.yaml"
       - "application/%{application}.yaml"
       - "collection/%{collection}.yaml"
       - "profile/%{profile}.yaml"
