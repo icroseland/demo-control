@@ -8,11 +8,11 @@ hierarchy:
   - name: "Per-node data (yaml version)"
     lookup_key: eyaml_lookup_key
     paths:
-      - "nodes/%{::fqdn}.yaml"
-      - "application/%{::application}.yaml"
-      - "collection/%{::collection}.yaml"
-      - "profile/%{::profile}.yaml"
-      - "puppet_type/%{::puppet_type}.yaml"
+      - "nodes/%{fqdn}.yaml"
+      - "application/%{application}.yaml"
+      - "collection/%{collection}.yaml"
+      - "profile/%{profile}.yaml"
+      - "puppet_type/%{puppet_type}.yaml"
       - "common.yaml"
     options:
       pkcs7_private_key: /etc/puppetlabs/eyaml/keys/private_key.pkcs7.pem
